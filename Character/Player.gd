@@ -33,6 +33,8 @@ var min_jump_velocity
 var jump_duration=0.75
 #state logic
 var smashing=false
+var dead=false
+
 
 
 func _ready():
@@ -55,7 +57,3 @@ func apply_movement(delta):
 func apply_gravity(delta,factor):
 	player_velocity.y+=gravity*delta*factor
 
-
-
-func _on_VisibilityNotifier2D_screen_exited():
-	print("Hi and death logic here")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Character/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main_Game/Platorm_spwaner.gd" type="Script" id=2]
+[ext_resource path="res://Infinate Gen/Tiles/Dead_cold/Dead_cold_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main_Game/Camera2D.gd" type="Script" id=4]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 422, 94 )
+
+[node name="Platorm_spwaner" type="Node2D" parent="."]
+script = ExtResource( 2 )
+camera_path = NodePath("../Camera2D")
+
+[node name="Platform" parent="Platorm_spwaner" instance=ExtResource( 3 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 511.359, 302.059 )
+current = true
+script = ExtResource( 4 )
+player_path = NodePath("../Player")

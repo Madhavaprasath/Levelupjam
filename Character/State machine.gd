@@ -5,7 +5,8 @@ func _init():
 			2:"Run",
 			3:"Jump",
 			4:"Fall",
-			5:"Smash"}
+			5:"Smash",
+			6:"Dead"}
 
 
 func _ready():
@@ -13,7 +14,10 @@ func _ready():
 
 
 func state_logic(delta):
-	parent.position.x+=200*delta
+	if !parent.dead:
+		parent.apply_movement(delta)
+		var factor = 4 if current_state =="Smash" else 2
+		parent.apply_gravity(delta,factor)
 func transition(delta):
 	match current_state:
 		"Idle":
@@ -27,6 +31,8 @@ func transition(delta):
 					return states[5]
 				else:
 					return states[4]
+			if parent.dead:
+				return states[6]
 		"Run":
 			if parent.is_on_floor():
 				if parent.player_velocity.x<25:
@@ -38,6 +44,8 @@ func transition(delta):
 					return states[5]
 				else:
 					return states[4]
+			if parent.dead:
+				return states[6]
 		"Jump":
 			if parent.is_on_floor():
 				return states[1]
@@ -46,6 +54,8 @@ func transition(delta):
 					return states[5]
 				else:
 					return states[4]
+			if parent.dead:
+				return states[6]
 		"Smash":
 			if parent.is_on_floor():
 				return states[1]
@@ -54,6 +64,8 @@ func transition(delta):
 				return states[1]
 			elif !parent.is_on_floor() && parent.smashing:
 				return states[5]
+			if parent.dead:
+				return states[6]
 	return null
 
 
