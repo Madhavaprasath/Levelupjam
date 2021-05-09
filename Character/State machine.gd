@@ -16,7 +16,7 @@ func _ready():
 func state_logic(delta):
 	if !parent.dead:
 		parent.apply_movement(delta)
-		var factor = 4 if current_state =="Smash" else 2
+		var factor = 6 if current_state =="Smash" else 2
 		parent.apply_gravity(delta,factor)
 func transition(delta):
 	match current_state:

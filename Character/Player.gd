@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-var BACKGROUND_MOVING_SPEED=200
 var PLAYER_MOVEMENT_SPEED=300
 
 #weather changes 
@@ -9,8 +8,8 @@ var factors={"Warm":{"Speed":1,
 					"Jump_factor":1
 					},
 			"Dead_Hot":{
-					"Speed":1.25,
-					"Jump_factor":1.25
+					"Speed":1.5,
+					"Jump_factor":1.5
 			},
 		"Dead_cold":{
 			"Speed":0.75,
@@ -29,6 +28,8 @@ var Min_jump_height=2.0*32
 
 var max_jump_velocity
 var min_jump_velocity
+
+onready var inital_time=OS.get_ticks_msec()
 
 var jump_duration=0.75
 #state logic
@@ -53,7 +54,23 @@ func apply_movement(delta):
 	var direction_x=int(directions['Right'])-int(directions['Left'])
 	player_velocity.x=lerp(player_velocity.x,direction_x*PLAYER_MOVEMENT_SPEED*factors[weather]["Jump_factor"],0.2)
 	player_velocity=move_and_slide(player_velocity,Vector2.UP)
+	change_speed_time(delta)
+
 
 func apply_gravity(delta,factor):
 	player_velocity.y+=gravity*delta*factor
 
+
+func change_speed_time(delta):
+	var current_time=(OS.get_ticks_msec()-inital_time)/1000
+	
+	if current_time%5==0 && PLAYER_MOVEMENT_SPEED<750:
+		PLAYER_MOVEMENT_SPEED+=1
+		if Min_jump_height<240 and Max_jump_height<300:
+			Max_jump_height+=1
+			Min_jump_height+=1
+			update_kinematics()
+
+func update_kinematics():
+	max_jump_velocity=-sqrt(2*Max_jump_height*gravity)
+	min_jump_velocity=-sqrt(2*Min_jump_height*gravity)
