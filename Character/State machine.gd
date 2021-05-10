@@ -74,9 +74,9 @@ func transition(delta):
 func _unhandled_key_input(event):
 	if current_state in ["Run","Idle"]:
 		if event.is_action_pressed("ui_up"):
-			parent.player_velocity.y=parent.max_jump_velocity*parent.factors[parent.weather]["Jump_factor"]
+			parent.player_velocity.y=parent.max_jump_velocity*Globals.global_jump_factor
 		if event.is_action_released("ui_up") && parent.player_velocity.y<parent.min_jump_velocity:
-			parent.player_velocity.y=parent.min_jump_velocity*parent.factors[parent.weather]["Jump_factor"]
+			parent.player_velocity.y=parent.min_jump_velocity*Globals.global_jump_factor
 	if current_state in ["Fall"]:
 		if event.is_action_pressed("ui_down"):
 			parent.smashing=true

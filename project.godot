@@ -23,6 +23,19 @@ _global_script_class_icons={
 config/name="Levelupjam"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
+[layer_names]
+
+2d_physics/layer_1="Envirorment"
+2d_physics/layer_2="DropPlatform"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Collectable"
+2d_physics/layer_5="Obstacle"
+2d_physics/layer_6="Enemy"
+
 [physics]
 
 common/enable_pause_aware_picking=true
