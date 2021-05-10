@@ -14,8 +14,17 @@ var factors={"Warm":{"Speed":1,
 var weather="Warm"
 var global_run_factor=factors[weather]["Speed"]
 var global_jump_factor=factors[weather]["Jump_factor"]
+var temprature=0
 
 signal change_temprature(amount)
 
+func _process(delta):
+	if temprature<=10:
+		weather="Dead_Hot"
+	elif temprature<=-10:
+		weather="Dead_cold"
+	else:
+		weather="Warm"
+	print(weather)
 func emit_change_temprature(amount):
 	emit_signal("change_temprature",amount)
