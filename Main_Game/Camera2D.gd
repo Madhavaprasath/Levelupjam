@@ -10,7 +10,7 @@ onready var inital_time=OS.get_ticks_msec()
 
 
 func _physics_process(delta):
-	position.x+=background_speed*delta
+	position.x+=background_speed*delta*Globals.factors[Globals.weather]["Speed"]
 	if player.global_position.distance_to(global_position)>575:
 		player.dead=true
 	if background_speed<300:

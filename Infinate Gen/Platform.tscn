@@ -44,3 +44,5 @@ format = 1
 [node name="Area2D" type="Area2D" parent="Area"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/Area2D"]
+
+[node name="Coins" type="Node2D" parent="."]

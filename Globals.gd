@@ -15,7 +15,7 @@ var weather="Warm"
 var global_run_factor=factors[weather]["Speed"]
 var global_jump_factor=factors[weather]["Jump_factor"]
 var temprature=0
-
+var collector_destionation
 signal change_temprature(amount)
 
 func _process(delta):
@@ -25,6 +25,5 @@ func _process(delta):
 		weather="Dead_cold"
 	else:
 		weather="Warm"
-	print(weather)
 func emit_change_temprature(amount):
 	emit_signal("change_temprature",amount)

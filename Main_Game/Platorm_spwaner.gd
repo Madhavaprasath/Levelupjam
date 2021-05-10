@@ -4,6 +4,10 @@ export (NodePath) var camera_path
 
 const Y_CORDINATE=384
 
+var platforms={"warm":[],
+				"Dead_hot":[],
+				"Dead_cold":[]}
+
 var platform_array=[preload("res://Infinate Gen/Tiles/Dead_cold/Dead_cold_1.tscn")]
 var last_platform_componets=[]
 var end_position
