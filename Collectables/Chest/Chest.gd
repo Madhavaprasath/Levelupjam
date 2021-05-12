@@ -7,7 +7,6 @@ var player=null
 
 func _ready():
 	randomize()
-
 func _unhandled_input(event):
 	if Input.is_action_pressed("interact"):
 		print("Hi")

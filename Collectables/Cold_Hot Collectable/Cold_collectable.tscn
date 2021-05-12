@@ -4,6 +4,7 @@
 [ext_resource path="res://Collectables/Collectable.tscn" type="PackedScene" id=2]
 
 [node name="Cold_collectable" instance=ExtResource( 2 )]
+temprature = 1
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 0.2, 0.2 )

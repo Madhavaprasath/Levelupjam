@@ -1,23 +1,24 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Character/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Game/Platorm_spwaner.gd" type="Script" id=2]
-[ext_resource path="res://Infinate Gen/Tiles/Dead_cold/Dead_cold_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Infinate Gen/Tiles/Dead_cold/Dead_cold_0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main_Game/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://Collectables/Chest/Chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Slider/Slider.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Main_Game/Collector_spwaner.gd" type="Script" id=7]
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 314.201, 341.67 )
+position = Vector2( 142.635, 277.402 )
 
-[node name="Platorm_spwaner" type="Node2D" parent="."]
+[node name="Platform_spawner" type="Node2D" parent="."]
 script = ExtResource( 2 )
 camera_path = NodePath("../Camera2D")
 
-[node name="Platform" parent="Platorm_spwaner" instance=ExtResource( 3 )]
+[node name="Platform" parent="Platform_spawner" instance=ExtResource( 3 )]
+
+[node name="Collectables" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 511.359, 302.059 )
@@ -26,14 +27,16 @@ script = ExtResource( 4 )
 player_path = NodePath("../Player")
 
 [node name="Slider" parent="Camera2D" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 0.890869, 198.67 )
 scale = Vector2( 5, 5 )
 
 [node name="Collector_spwaner" type="Node2D" parent="Camera2D"]
+position = Vector2( 511.244, -114.796 )
 script = ExtResource( 7 )
+collectable_paths = NodePath("../../Collectables")
 
 [node name="Timer" type="Timer" parent="Camera2D/Collector_spwaner"]
+autostart = true
 
-[node name="Chest" parent="." instance=ExtResource( 5 )]
-position = Vector2( 496.478, 334.132 )
-temprature = 1
+[connection signal="timeout" from="Camera2D/Collector_spwaner/Timer" to="Camera2D/Collector_spwaner" method="_on_Timer_timeout"]

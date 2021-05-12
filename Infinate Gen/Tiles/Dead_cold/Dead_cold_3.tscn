@@ -113,13 +113,16 @@ position = Vector2( 0, 384 )
 scale = Vector2( 4, 4 )
 tile_set = SubResource( 9 )
 cell_size = Vector2( 16, 16 )
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 1, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0 )
+
+[node name="Dropthru tilemap" parent="." index="1"]
+tile_data = PoolIntArray( -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131065, 0, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65529, 0, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0 )
 
 [node name="Endpoint" parent="." index="3"]
-position = Vector2( 320, 0 )
+position = Vector2( 832, 0 )
 
 [node name="Area" parent="." index="4"]
-position = Vector2( 299.254, -187.995 )
+position = Vector2( 824, -192 )
 
 [node name="CollisionShape2D" parent="Area/Area2D" index="0"]
 shape = SubResource( 10 )
